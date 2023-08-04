@@ -1,4 +1,4 @@
-package example;
+package mindustryOS;
 
 import arc.*;
 import arc.util.*;
@@ -10,7 +10,7 @@ import mindustry.mod.*;
 import mindustry.net.Administration.*;
 import mindustry.world.blocks.storage.*;
 
-public class ExamplePlugin extends Plugin{
+public class MindustryOSPlugin extends Plugin{
 
     //called when game initializes
     @Override
@@ -20,9 +20,12 @@ public class ExamplePlugin extends Plugin{
             if(!event.breaking && event.builder != null && event.builder.buildPlan() != null && event.builder.buildPlan().block == Blocks.thoriumReactor && event.builder.isPlayer()){
                 //player is the unit controller
                 Player player = event.builder.getPlayer();
-
                 //send a message to everyone saying that this player has begun building a reactor
                 Call.sendMessage("[scarlet]ALERT![] " + player.name + " has begun building a reactor at " + event.tile.x + ", " + event.tile.y);
+            }
+            if(!event.breaking && event.builder != null) {
+                Player player = event.builder.getPlayer();
+                Call.sendMessage("[I] player uuid:" + player.uuid());
             }
         });
 
